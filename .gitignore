@@ -1,3 +1,8 @@
+# Frontend
+
+# Environment variables
+frontend/.env
+
 # Logs
 frontend/logs
 frontend/*.log
@@ -12,8 +17,6 @@ frontend/dist
 frontend/dist-ssr
 frontend/*.local
 
-backend/.venv
-
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -24,3 +27,28 @@ backend/.venv
 *.njsproj
 *.sln
 *.sw?
+
+# Backend
+
+# Virtual environment
+backend/.venv/
+
+# mock DB data
+backend/data/*
+
+# audio files
+backend/audio/*
+
+# Python cache and bytecode
+__pycache__/
+*.pyc
+
+# Environment variables
+backend/.env
+
+# IDE files
+*.idea/
+.vscode/
+
+# Miscellaneous
+.DS_Store
