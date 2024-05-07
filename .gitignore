@@ -30,14 +30,17 @@ frontend/*.local
 
 # Backend
 
+# Logs
+backend/logs/*.log
+
 # Virtual environment
 backend/.venv/
 
 # mock DB data
-backend/data/*
+backend/data/*.json
 
 # audio files
-backend/audio/*
+backend/audio/*.mp3
 
 # Python cache and bytecode
 __pycache__/
