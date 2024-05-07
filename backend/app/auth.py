@@ -3,8 +3,10 @@ from flask import Blueprint, request, jsonify, current_app
 from flask_jwt_extended import create_access_token, jwt_required, get_jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 from app.utils import add_to_blacklist
+import logging
 
 auth_blueprint = Blueprint("auth", __name__)
+logger = logging.getLogger("audio-player")
 
 
 """
@@ -30,6 +32,7 @@ def register():
     users = current_app.users  # Accessing the loaded users from the app context
 
     if username in users:
+        logger.warning(f"User {username} already exists")
         return jsonify({"msg": "User already exists"}), 400
 
     # Store hashed password in the user data
@@ -37,6 +40,7 @@ def register():
         "username": username,
         "password": generate_password_hash(password),
     }
+    logger.info(f"User {username} registered successfully")
     return jsonify({"msg": "User registered successfully"}), 201
 
 
@@ -67,10 +71,12 @@ def login():
 
     # Check if the user exists and verify the hashed password
     if username not in users or not check_password_hash(users[username]["password"], password):
+        logger.warning(f"Failed login attempt for user: {username}")
         return jsonify({"msg": "Invalid credentials"}), 401
 
     # Generate a JWT token if the credentials are valid
     access_token = create_access_token(identity=username)
+    logger.info(f"User {username} logged in successfully")
     return jsonify({"access_token": access_token})
 
 
@@ -96,4 +102,5 @@ def logout():
     # Add the JTI to the blacklist
     add_to_blacklist(jti)
 
+    logger.info(f"User logged out successfully")
     return jsonify({"msg": "Successfully logged out"}), 200
