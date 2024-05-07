@@ -1,22 +1,27 @@
 from app.routes import routes_blueprint
+import logging
 from app.auth import auth_blueprint
 from flask import Flask
 from flask_cors import CORS
 from flask_jwt_extended import JWTManager, get_jwt
 from app.utils import load_users_from_json, load_audio_files
-from app.utils import is_blacklisted
+from app.utils import is_blacklisted, setup_logging
 from app.config import JWT_SECRET_KEY, JWT_ACCESS_TOKEN_EXPIRES
 
 app = Flask(__name__)
-CORS(app)  # Allow cross-origin requests from frontend
+CORS(app)
 
-app.config["JWT_SECRET_KEY"] = JWT_SECRET_KEY  # Set secret key for JWT
-# Set token expiry time
+# Set up logging
+
+logger = setup_logging()
+
+app.config["JWT_SECRET_KEY"] = JWT_SECRET_KEY
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = JWT_ACCESS_TOKEN_EXPIRES
 
 jwt = JWTManager(app)
 
 # Load user data and store it in a global variable
+
 app.users = load_users_from_json("data/users.json")
 app.audio_files = load_audio_files("data/audio_files.json")
 
