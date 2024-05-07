@@ -6,7 +6,7 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager, get_jwt
 from app.utils import load_users_from_json, load_audio_files
 from app.utils import is_blacklisted, setup_logging
-from app.config import JWT_SECRET_KEY, JWT_ACCESS_TOKEN_EXPIRES
+from app.config import JWT_SECRET_KEY, JWT_ACCESS_TOKEN_EXPIRES, TESTING
 
 app = Flask(__name__)
 CORS(app)
@@ -17,6 +17,7 @@ logger = setup_logging()
 
 app.config["JWT_SECRET_KEY"] = JWT_SECRET_KEY
 app.config["JWT_ACCESS_TOKEN_EXPIRES"] = JWT_ACCESS_TOKEN_EXPIRES
+app.config["TESTING"] = TESTING
 
 jwt = JWTManager(app)
 
