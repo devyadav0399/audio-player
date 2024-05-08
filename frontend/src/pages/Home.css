@@ -1,0 +1,23 @@
+.home-container {
+  height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.home-title {
+  margin-top: 5rem;
+}
+
+.files-dropdown {
+  margin: 2rem 0;
+}
+
+.files-dropdown select {
+  padding: 1rem;
+}
+
+.audio-player-container {
+  width: 100%;
+  height: 100%;
+}

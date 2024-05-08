@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { axiosInstance, setAuthorizationHeader } from "../utils/axiosInstance";
 import PropTypes from "prop-types";
 
+import "./AudioPlayer.css";
+
 const AudioPlayer = ({ audioId }) => {
   const [audioSource, setAudioSource] = useState(null);
 
@@ -21,8 +23,7 @@ const AudioPlayer = ({ audioId }) => {
   }, [audioId]);
 
   return (
-    <div>
-      <h3>Audio Player</h3>
+    <div className="audio-player">
       {audioSource ? (
         <audio controls src={audioSource} />
       ) : (
