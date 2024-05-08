@@ -4,6 +4,7 @@ import Header from "./components/Header";
 import ProtectedRoute from "./components/ProtectedRoute";
 import { AuthProvider } from "./context/authContext.jsx";
 import Home from "./pages/Home.jsx";
+import "./App.css";
 
 const App = () => {
   return (

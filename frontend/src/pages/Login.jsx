@@ -4,6 +4,8 @@ import { storeToken } from "../utils/tokenStorage";
 import { useAuth } from "../context/authContext";
 import { useNavigate } from "react-router-dom";
 
+import "./Login.css";
+
 const Login = () => {
   const { isAuthenticated, login } = useAuth();
   const navigate = useNavigate();
@@ -33,25 +35,32 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleLogin}>
-        <input
-          type="text"
-          placeholder="Username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
-          required // Make the field required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required // Make the field required
-        />
-        <button type="submit">Login</button> {/* Submit button for the form */}
-      </form>
+    <div className="login-container">
+      <div className="login-box">
+        <div className="login-title">
+          <span>Login</span>
+        </div>
+        <div className="login-form">
+          <form onSubmit={handleLogin}>
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+              required // Make the field required
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required // Make the field required
+            />
+            <button type="submit">Login</button>{" "}
+            {/* Submit button for the form */}
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
