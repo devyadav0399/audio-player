@@ -17,7 +17,8 @@ const Login = () => {
     }
   }, [isAuthenticated, navigate]);
 
-  const handleLogin = () => {
+  const handleLogin = (e) => {
+    e.preventDefault();
     axiosInstance
       .post("/login", { username, password })
       .then((response) => {
@@ -34,19 +35,23 @@ const Login = () => {
   return (
     <div>
       <h2>Login</h2>
-      <input
-        type="text"
-        placeholder="Username"
-        value={username}
-        onChange={(e) => setUsername(e.target.value)}
-      />
-      <input
-        type="password"
-        placeholder="Password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-      />
-      <button onClick={handleLogin}>Login</button>
+      <form onSubmit={handleLogin}>
+        <input
+          type="text"
+          placeholder="Username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          required // Make the field required
+        />
+        <input
+          type="password"
+          placeholder="Password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+          required // Make the field required
+        />
+        <button type="submit">Login</button> {/* Submit button for the form */}
+      </form>
     </div>
   );
 };
