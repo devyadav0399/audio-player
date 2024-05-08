@@ -13,7 +13,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/audio-files");
+      navigate("/");
     }
   }, [isAuthenticated, navigate]);
 
@@ -24,7 +24,7 @@ const Login = () => {
       .then((response) => {
         storeToken(response.data.access_token);
         login();
-        navigate("/audio-files");
+        navigate("/");
         console.info("Logged in successfully.");
       })
       .catch((error) => {
