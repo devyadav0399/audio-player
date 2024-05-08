@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getToken } from "./tokenStorage";
+import { getToken, removeToken } from "./tokenStorage";
 
 // Create an Axios instance with a base URL
 const BASE_URL = import.meta.env.REACT_APP_BASE_URL || "http://127.0.0.1:5000";
@@ -16,5 +16,20 @@ const setAuthorizationHeader = () => {
     delete axiosInstance.defaults.headers.common["Authorization"];
   }
 };
+
+// Response interceptor to catch 401 errors and remove the token
+axiosInstance.interceptors.response.use(
+  (response) => {
+    return response;
+  },
+  (error) => {
+    if (error.response && error.response.status === 401) {
+      console.log("401 error: Removing access token from sessionStorage");
+      removeToken();
+    }
+
+    return Promise.reject(error);
+  }
+);
 
 export { axiosInstance, setAuthorizationHeader };
