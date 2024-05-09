@@ -1,12 +1,15 @@
+import os
 import json
 import logging
 from werkzeug.security import check_password_hash
 
 # Utility function to load users from JSON
 
+script_dir = os.path.dirname(os.path.realpath(__file__))
 
-def load_users_from_json(json_path):
-    with open(json_path, "r") as file:
+def load_users_from_json(file_name):
+    users_file_path = os.path.join(script_dir, "..", "data", file_name)
+    with open(users_file_path, "r") as file:
         data = json.load(file)
         users = {user["username"]: user for user in data["users"]}
     return users
@@ -14,8 +17,9 @@ def load_users_from_json(json_path):
 # Utility function to load audio files from JSON
 
 
-def load_audio_files(json_path):
-    with open(json_path, "r") as file:
+def load_audio_files(file_name):
+    audio_file_path = os.path.join(script_dir, "..", "data", file_name)
+    with open(audio_file_path, "r") as file:
         data = json.load(file)
         return data["audio_files"]
 

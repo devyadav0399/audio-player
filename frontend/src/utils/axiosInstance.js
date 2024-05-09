@@ -2,7 +2,7 @@ import axios from "axios";
 import { getToken, removeToken } from "./tokenStorage";
 
 // Create an Axios instance with a base URL
-const BASE_URL = import.meta.env.REACT_APP_BASE_URL || "http://127.0.0.1:5000";
+const BASE_URL = import.meta.env.VITE_BASE_URL || "http://127.0.0.1:5000";
 const axiosInstance = axios.create({
   baseURL: BASE_URL,
 });

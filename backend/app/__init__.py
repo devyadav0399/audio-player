@@ -23,8 +23,8 @@ jwt = JWTManager(app)
 
 # Load user data and store it in a global variable
 
-app.users = load_users_from_json("data/users.json")
-app.audio_files = load_audio_files("data/audio_files.json")
+app.users = load_users_from_json("users.json")
+app.audio_files = load_audio_files("audio_files.json")
 
 # Register Blueprints
 
