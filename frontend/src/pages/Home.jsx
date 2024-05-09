@@ -4,18 +4,32 @@ import AudioPlayer from "../components/AudioPlayer";
 
 import "./Home.css";
 
+const DEBOUNCE_DELAY = 500;
+
 const Home = () => {
   const [audioFiles, setAudioFiles] = useState([]);
   const [selectedAudioId, setSelectedAudioId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
+
+  useEffect(() => {
+    // Use a timeout to debounce the search term
+    const debounceTimeout = setTimeout(() => {
+      setDebouncedSearchTerm(searchTerm);
+    }, DEBOUNCE_DELAY);
+
+    return () => {
+      clearTimeout(debounceTimeout);
+    };
+  }, [searchTerm]);
 
   useEffect(() => {
     setAuthorizationHeader();
 
-    if (searchTerm) {
+    if (debouncedSearchTerm) {
       // If there's a search term, call the search endpoint
       axiosInstance
-        .get("/audio/search", { params: { query: searchTerm } })
+        .get("/audio/search", { params: { query: debouncedSearchTerm } })
         .then((response) => {
           setAudioFiles(response.data);
         })
@@ -33,7 +47,7 @@ const Home = () => {
           console.error("Error fetching audio files:", error);
         });
     }
-  }, [searchTerm]);
+  }, [debouncedSearchTerm]);
 
   const handleAudioSelect = (e) => {
     setSelectedAudioId(e.target.value);
