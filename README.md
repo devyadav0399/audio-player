@@ -1,10 +1,10 @@
-# OdioPlayer
+# Audio Player
 
 Your Ultimate Audio Experience
 
 ## Project Description
 
-OdioPlayer is a modern audio player application that demonstrates a seamless integration of backend and frontend technologies. Built with Flask (backend) and React.js (frontend), it features secure user authentication, audio file retrieval through a RESTful API, search functionality, and audio playback.
+Audio Player App is a modern audio player application that demonstrates a seamless integration of backend and frontend technologies. Built with Flask (backend) and React.js (frontend), it features secure user authentication, audio file retrieval through a RESTful API, search functionality, and audio playback.
 
 ## Table of Contents
 
@@ -47,28 +47,19 @@ OdioPlayer is a modern audio player application that demonstrates a seamless int
 
 1. Change to the frontend directory: `cd ../frontend`
 2. Install dependencies: `npm install`
-3. Start the React development server: `npm start`
+3. Create a `.env` file in the `frontend/` directory:
+   - Define `VITE_BASE_URL` and add the backend server url with the port _(eg: http://127.0.0.1:5000)_
+3. Start the React development server: `npm run dev`
 
 ## Usage Guide
 
 - After setting up the backend and frontend, open a browser and navigate to `http://localhost:5173` (or the configured React port).
-- Register a new account or log in with existing credentials.
+- Log in using credentials.
 - Use the search bar to find audio files.
 - Select an audio file to play.
 
 ## Screenshots
 
-![Screenshot 1](link-to-screenshot-1)  
-![Screenshot 2](link-to-screenshot-2)
+![Screenshot 1](https://github.com/devyadav0399/audio-player/assets/29747045/a1229e3c-4a6f-4cc5-ad93-fc95ccf60fa8)
 
-## Contributing
-
-Contributions are welcome! To contribute:
-
-- Fork the repository.
-- Create a new branch for your feature or bug fix.
-- Submit a pull request.
-
-## License
-
-This project is licensed under the [MIT License](link-to-license).
+![Screenshot 2](https://github.com/devyadav0399/audio-player/assets/29747045/9c65282a-2008-43a3-bd52-6e0177e32705)
