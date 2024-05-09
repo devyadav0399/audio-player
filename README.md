@@ -12,6 +12,7 @@ Audio Player App is a modern audio player application that demonstrates a seamle
 - [Tech Stack](#tech-stack)
 - [Setup Instructions](#setup-instructions)
 - [Usage Guide](#usage-guide)
+- [Running Tests](#running-tests)
 - [Screenshots](#screenshots)
 - [Contributing](#contributing)
 - [License](#license)
@@ -57,6 +58,24 @@ Audio Player App is a modern audio player application that demonstrates a seamle
 - Log in using credentials.
 - Use the search bar to find audio files.
 - Select an audio file to play.
+
+## Running Tests
+
+### Backend Testing
+- **Testing Tool**: The backend uses `pytest` for unit testing.
+- **Running Tests**: To run all tests, ensure the virtual environment is activated and the dependencies are installed, then use the following command:
+    ```bash
+    pytest tests/
+    ```
+- **Common Issues**: If tests do not run, ensure pytest is installed `pip install pytest` and check for typos or missing test files. Ensure you're running the command from the backend directory.
+
+### Frontend Testing
+- **Testing Tool**: The frontend uses Vitest for unit tests.
+- **Running Tests**: To run the tests, ensure all dependencies are installed, then use the following command:
+    ```bash
+     npm run test
+    ```
+- **Common Issues**: If tests do not run, ensure Vitest and related dependencies are installed `npm install vitest @testing-library/react`. If you get errors about missing modules, double-check import paths and ensure all test files are in the correct location.
 
 ## Screenshots
 
