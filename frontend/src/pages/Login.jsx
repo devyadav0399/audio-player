@@ -45,7 +45,10 @@ const Login = () => {
     <div className="login-container">
       <div className="login-box">
         <div className="login-title">
-          <span>Login</span>
+          <span> &#127925; Hello...</span>
+        </div>
+        <div className="sub-title">
+          <span>from the other side &#127925;</span>
         </div>
         <div className="login-form">
           <form onSubmit={handleLogin}>
