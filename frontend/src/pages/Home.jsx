@@ -64,6 +64,7 @@ const Home = () => {
           placeholder="Search audio files"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
+          id="search-bar"
         />
       </div>
       <div className="files-dropdown">
