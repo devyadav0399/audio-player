@@ -11,6 +11,7 @@ const Home = () => {
   const [selectedAudioId, setSelectedAudioId] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState("");
+  const [loading, setLoading] = useState(null);
 
   useEffect(() => {
     // Use a timeout to debounce the search term
@@ -25,6 +26,7 @@ const Home = () => {
 
   useEffect(() => {
     setAuthorizationHeader();
+    setLoading(true);
 
     if (debouncedSearchTerm) {
       // If there's a search term, call the search endpoint
@@ -32,9 +34,11 @@ const Home = () => {
         .get("/audio/search", { params: { query: debouncedSearchTerm } })
         .then((response) => {
           setAudioFiles(response.data);
+          setLoading(false);
         })
         .catch((error) => {
           console.error("Error fetching search results:", error);
+          setLoading(false);
         });
     } else {
       // If no search term, fetch all audio files
@@ -42,9 +46,11 @@ const Home = () => {
         .get("/audio")
         .then((response) => {
           setAudioFiles(response.data);
+          setLoading(false);
         })
         .catch((error) => {
           console.error("Error fetching audio files:", error);
+          setLoading(false);
         });
     }
   }, [debouncedSearchTerm]);
@@ -67,21 +73,31 @@ const Home = () => {
           id="search-bar"
         />
       </div>
-      <div className="files-dropdown">
-        <select onChange={handleAudioSelect} defaultValue="">
-          <option value="" disabled>
-            Select an Audio File
-          </option>
-          {audioFiles.map((audio) => (
-            <option key={audio.id} value={audio.id}>
-              {audio.name}
-            </option>
-          ))}
-        </select>
-      </div>
-      <div className="audio-player-container">
-        {selectedAudioId && <AudioPlayer audioId={selectedAudioId} />}
-      </div>
+      {loading ? (
+        <div className="spinner-container" style={{ marginTop: "2rem" }}>
+          <div className="spinner-border text-primary" role="status">
+            <span className="sr-only"></span>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div className="files-dropdown">
+            <select onChange={handleAudioSelect} defaultValue="">
+              <option value="" disabled>
+                Select an Audio File
+              </option>
+              {audioFiles.map((audio) => (
+                <option key={audio.id} value={audio.id}>
+                  {audio.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="audio-player-container">
+            {selectedAudioId && <AudioPlayer audioId={selectedAudioId} />}
+          </div>
+        </>
+      )}
     </div>
   );
 };
