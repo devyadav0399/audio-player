@@ -8,8 +8,10 @@ import "./AudioPlayer.css";
 const AudioPlayer = ({ audioId }) => {
   const [audioSource, setAudioSource] = useState(null);
   const [blob, setBlob] = useState(null);
-  const visualizerRef = useRef(null);
   const [loading, setLoading] = useState(true);
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const audioRef = useRef(null);
 
   useEffect(() => {
     if (audioId) {
@@ -30,6 +32,32 @@ const AudioPlayer = ({ audioId }) => {
     }
   }, [audioId]);
 
+  useEffect(() => {
+    if (audioRef.current) {
+      const audioElement = audioRef.current;
+
+      const handlePlay = () => {
+        setIsPlaying(true);
+      };
+
+      const handlePause = () => {
+        setIsPlaying(false);
+      };
+
+      // Attach event listeners to the audio element
+      audioElement.addEventListener("play", handlePlay);
+      audioElement.addEventListener("pause", handlePause);
+      audioElement.addEventListener("ended", handlePause);
+
+      // Cleanup event listeners to avoid memory leaks
+      return () => {
+        audioElement.removeEventListener("play", handlePlay);
+        audioElement.removeEventListener("pause", handlePause);
+        audioElement.removeEventListener("ended", handlePause);
+      };
+    }
+  }, [audioSource]);
+
   return (
     <div className="audio-player">
       {loading ? (
@@ -43,18 +71,18 @@ const AudioPlayer = ({ audioId }) => {
           <div className="visualizer">
             {blob && (
               <AudioVisualizer
-                ref={visualizerRef}
+                key={`visualizer-${isPlaying}`}
                 blob={blob}
                 width={500}
                 height={75}
-                barWidth={1}
+                barWidth={isPlaying ? 2 : 1}
                 gap={0}
-                barColor={"#f76565"}
+                barColor={isPlaying ? "#007bff" : "#f76565"}
               />
             )}
           </div>
           <div className="media-player">
-            <audio controls src={audioSource} />
+            <audio ref={audioRef} controls src={audioSource} />
           </div>
         </>
       ) : (
