@@ -37,8 +37,8 @@ Audio Player App is a modern audio player application that demonstrates a seamle
 
 1. Clone the repository: `git clone https://github.com/yourusername/audio-player.git`
 2. Change to the backend directory: `cd audio-player/backend`
-3. Create a virtual environment: `python3 -m venv venv`
-4. Activate the virtual environment: `source venv/bin/activate`
+3. Create a virtual environment: `python3 -m venv .venv`
+4. Activate the virtual environment: `source .venv/bin/activate`
 5. Install dependencies: `pip install -r requirements.txt`
 6. Create a `.env` file in the `backend/` directory:
    - Define `JWT_SECRET_KEY` for JWT-based authentication.
@@ -58,6 +58,8 @@ Audio Player App is a modern audio player application that demonstrates a seamle
 - Log in using credentials.
 - Use the search bar to find audio files.
 - Select an audio file to play.
+
+[Click here to access the deployed version of the app](https://special-afternoon.surge.sh/)
 
 ## Running Tests
 
@@ -79,6 +81,6 @@ Audio Player App is a modern audio player application that demonstrates a seamle
 
 ## Screenshots
 
-![Screenshot 1](https://github.com/devyadav0399/audio-player/assets/29747045/a1229e3c-4a6f-4cc5-ad93-fc95ccf60fa8)
+![Screenshot 1](https://github.com/devyadav0399/audio-player/assets/29747045/9660ab0b-49ea-4984-8de5-9e54e68186d8)
 
-![Screenshot 2](https://github.com/devyadav0399/audio-player/assets/29747045/9c65282a-2008-43a3-bd52-6e0177e32705)
+![Screenshot 2](https://github.com/devyadav0399/audio-player/assets/29747045/e83226c3-42e1-4173-85e9-3d2fd8977836)
