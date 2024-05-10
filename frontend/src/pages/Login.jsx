@@ -36,6 +36,8 @@ const Login = () => {
           const toastElement = new window.bootstrap.Toast(toastRef.current);
           toastElement.show();
         }
+        setUsername("");
+        setPassword("");
       });
   };
 
